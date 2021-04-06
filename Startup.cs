@@ -1,7 +1,9 @@
 using EvaCourier.API.Models;
+using EvaCourier.EmailService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -51,8 +53,7 @@ namespace EvaCourier.API
                         .AllowAnyMethod()
                        .AllowAnyHeader()
                        //.AllowCredentials()
-                       )
-                        ;
+                       );
             })
                 .AddSingleton<ILoggerFactory, LoggerFactory>()
                 .AddSingleton(typeof(ILogger<>), typeof(Logger<>));
@@ -74,29 +75,21 @@ namespace EvaCourier.API
                 };
             });
 
-            //services.AddAuthentication(x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}).AddJwtBearer(x =>
-            //{
-            //    x.RequireHttpsMetadata = false;
-            //    x.SaveToken = true;
-            //    x.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuerSigningKey = true,
-            //        IssuerSigningKey = new SymmetricSecurityKey(key),
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false
-            //    };
-            //});
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
 
+            services.AddScoped<IEmailSender, EmailSender>();
 
-            
+            services.Configure<FormOptions>(o =>
+            {
+                o.ValueCountLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
 
-            
             ConfigureSwagger(services);
-
         }
 
         private static void ConfigureSwagger(IServiceCollection services)

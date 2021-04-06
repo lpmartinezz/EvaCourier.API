@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EvaCourier.EmailService\EvaCourier.EmailService.csproj" />
     <ProjectReference Include="..\EvaCourier.Entities\EvaCourier.Entities.csproj" />
   </ItemGroup>
 
