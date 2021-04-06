@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EvaCourier.API</name>
+    </assembly>
+    <members>
+        <member name="M:EvaCourier.API.Controllers.OptionsController.GetAllOpcions">
+            <summary>
+            Obtener todos las opciones
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna los datos de todos las opciones</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.OptionsController.GetOneOpcion(System.Int32)">
+            <summary>
+            Obtener informacion de la opcion
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la opcion</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.OptionsController.InsertOpcion(EvaCourier.Entities.ResultOpcion)">
+            <summary>
+            Insertar Opcion
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la insercion de la Opcion</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.OptionsController.UpdateOpcion(EvaCourier.Entities.ResultOpcion)">
+            <summary>
+            Actualizar opcion
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la actualizacion de la opcion</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.OptionsController.DeleteOpcion(System.Int32)">
+            <summary>
+            Eliminar opcion
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la eliminacion de la opcion</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.PerfilsController.GetAllPerfils">
+            <summary>
+            Obtener todos los perfiles
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna los datos de todos los perfiles</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.PerfilsController.GetOnePerfil(System.Int32)">
+            <summary>
+            Obtener informacion del perfil
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información del perfil</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.PerfilsController.InsertPerfil(EvaCourier.Entities.ResultPerfil)">
+            <summary>
+            Insertar Perfil
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la insercion del Perfil</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.PerfilsController.UpdatePerfil(EvaCourier.Entities.ResultPerfil)">
+            <summary>
+            Actualizar perfil
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la actualizacion del perfil</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.PerfilsController.DeletePerfil(EvaCourier.Entities.RequestOnePerfil)">
+            <summary>
+            Eliminar perfil
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la eliminacion del perfil</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.PerfilsOpcionsController.GetOnePerfilOpcion(EvaCourier.Entities.RequestOnePerfil)">
+            <summary>
+            Obtener infor del formulario
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información del formulario</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UbigeosController.GetAllPerfils">
+            <summary>
+            Obtener todos los ubigeos
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna los datos de todos los ubigeos</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UbigeosController.GetOnePerfil(System.Int32)">
+            <summary>
+            Obtener informacion del ubigeo
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información del ubigeo</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UbigeosController.InsertUbigeo(EvaCourier.Entities.ResultUbigeo)">
+            <summary>
+            Insertar Ubigeo
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la insercion del Ubigeo</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UbigeosController.UpdateUbigeo(EvaCourier.Entities.ResultUbigeo)">
+            <summary>
+            Actualizar ubigeo
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la actualizacion del ubigeo</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UbigeosController.DeleteUbigeo(System.Int32)">
+            <summary>
+            Eliminar ubigeo
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la eliminacion del ubigeo</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UsuariosController.GetAllUsuarios">
+            <summary>
+            Obtener todos los usuarios
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna los datos de todos los usuarios</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UsuariosController.GetOneUsuario(System.Int32)">
+            <summary>
+            Obtener informacion del usuario
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información del usuario</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UsuariosController.InsertUbigeo(EvaCourier.Entities.ResultUsuario)">
+            <summary>
+            Insertar Usuario
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la insercion del Usuario</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UsuariosController.UpdateUsuario(EvaCourier.Entities.ResultUsuario)">
+            <summary>
+            Actualizar usuario
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la actualizacion del usuario</returns>
+        </member>
+        <member name="M:EvaCourier.API.Controllers.UsuariosController.DeleteUsuario(System.Int32)">
+            <summary>
+            Eliminar Usuario
+            </summary>
+            <response code="404"></response>
+            <returns>Retorna información de la eliminacion del usuario</returns>
+        </member>
+    </members>
+</doc>
