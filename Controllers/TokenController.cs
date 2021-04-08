@@ -31,9 +31,14 @@ namespace EvaCourier.API.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        /// <summary>
+        /// Para Login y generación de Tokens
+        /// </summary>
+        /// <response code="404"></response>
+        /// <returns>Retorna los datos de todos los perfiles</returns>
+        [HttpPost("Login")]
         //public async Task<IActionResult> Post(Usuario _userData)
-        public async Task<IActionResult> Post(string sNombreUsuario, string sClave)
+        public async Task<IActionResult> Login(string sNombreUsuario, string sClave)
         {
             if (sNombreUsuario != null && sClave != null)
             {
@@ -76,6 +81,13 @@ namespace EvaCourier.API.Controllers
         {
             return await _context.Usuario.FirstOrDefaultAsync(u => u.Nombreusuario == sUsuario && u.Clave == password);
         }
+
+        private async Task<Usuario> GetEmail(string sEmail)
+        {
+            return await _context.Usuario.FirstOrDefaultAsync(u => u.Correo == sEmail || u.Correo2 == sEmail);
+        }
+
+        
 
     }
 }

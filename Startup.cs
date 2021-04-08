@@ -38,9 +38,7 @@ namespace EvaCourier.API
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
-#pragma warning disable CS1591 // Falta el comentario XML para el tipo o miembro visible públicamente
         public void ConfigureServices(IServiceCollection services)
-#pragma warning restore CS1591 // Falta el comentario XML para el tipo o miembro visible públicamente
         {
             var connection = Configuration.GetConnectionString("EvaCourierDatabase");
             services.AddDbContextPool<DBEvaContext>(options => options.UseSqlServer(connection));
@@ -75,12 +73,12 @@ namespace EvaCourier.API
                 };
             });
 
-            var emailConfig = Configuration
-                .GetSection("EmailConfiguration")
-                .Get<EmailConfiguration>();
-            services.AddSingleton(emailConfig);
+            //var emailConfig = Configuration
+            //    .GetSection("EmailConfiguration")
+            //    .Get<EmailConfiguration>();
+            //services.AddSingleton(emailConfig);
 
-            services.AddScoped<IEmailSender, EmailSender>();
+            //services.AddScoped<IEmailSender, EmailSender>();
 
             services.Configure<FormOptions>(o =>
             {

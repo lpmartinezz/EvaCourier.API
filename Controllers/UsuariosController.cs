@@ -1,4 +1,5 @@
 ﻿using EvaCourier.API.Models;
+using EvaCourier.EmailService;
 using EvaCourier.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -7,23 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EvaCourier.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuariosController : ControllerBase
     {
 
         private readonly DBEvaContext _context;
-
+        private readonly IEmailSender _emailSender;
         public UsuariosController(DBEvaContext context)
         {
             _context = context;
+            //_emailSender = emailSender;
         }
 
         // GET: api/<UsuariosController>
@@ -402,6 +405,138 @@ namespace EvaCourier.API.Controllers
             }
             baseResponse.result = null;
             return Ok(baseResponse);
+        }
+
+        /// <summary>
+        /// Obtener informacion del usuario por Correo
+        /// </summary>
+        /// <response code="404"></response>
+        /// <returns>Retorna información del usuario</returns>
+        [HttpPost("EnviarCodigoRecuperación")]
+        [ProducesResponseType(typeof(BaseResponse<ResultUsuario>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<BaseResponse<ResultUsuario>>> EnviarCodigoRecuperaciónAsync(string sEmail)
+        {
+            BaseResponse<ResultUsuario> baseResponse = new BaseResponse<ResultUsuario>
+            {
+                result = new ResultUsuario()
+            };
+            try
+            {
+                var usuario = _context.Usuario.FirstOrDefault(x => x.Correo.Equals(sEmail) || x.Correo2.Equals(sEmail));
+                if (usuario != null)
+                {
+                    baseResponse.result.Idusuario = usuario.Idusuario;
+                    baseResponse.result.Idperfil = usuario.Idperfil;
+                    baseResponse.result.Idubigeo = usuario.Idubigeo;
+                    baseResponse.result.Nombres = usuario.Nombres;
+                    baseResponse.result.Apellidos = usuario.Apellidos;
+                    baseResponse.result.Direccion01 = usuario.Direccion01;
+                    baseResponse.result.Direccion02 = usuario.Direccion02;
+                    baseResponse.result.Telefono01 = usuario.Telefono01;
+                    baseResponse.result.Telefono02 = usuario.Telefono02;
+                    baseResponse.result.Celular01 = usuario.Celular01;
+                    baseResponse.result.Celular02 = usuario.Celular02;
+                    baseResponse.result.Ubicacion01 = usuario.Ubicacion01;
+                    baseResponse.result.Ubicacion02 = usuario.Ubicacion02;
+                    baseResponse.result.Correo = usuario.Correo;
+                    baseResponse.result.Correo2 = usuario.Correo2;
+                    baseResponse.result.Clave = usuario.Clave;
+                    baseResponse.result.Intentos = usuario.Intentos;
+                    baseResponse.result.Bloqueado = usuario.Bloqueado;
+                    baseResponse.result.Crea = usuario.Crea;
+                    baseResponse.result.Fechacrea = usuario.Fechacrea;
+                    baseResponse.result.Modifica = usuario.Modifica;
+                    baseResponse.result.Fechamodifica = usuario.Fechamodifica;
+
+                    baseResponse.success = true;
+                    baseResponse.code = "0000";
+                    baseResponse.mensaje = "Metodo EnviarCodigoRecuperación";
+
+                    try
+                    {
+                        //Enviar Email la clave
+                        //Generar Código Para Enviar en Correo
+                        string sCodigo = CrearPassword(10);
+                        //Insertar en la tabla de registro de cambio de clave o recuperación de contraseña
+                        
+                        try
+                        {
+                            Solicitudcambio solicitudcambio = new Solicitudcambio
+                            {
+                                Idsolicitudcambio = 0,
+                                Correo = baseResponse.result.Correo,
+                                Codigogenerado = sCodigo,
+                                Estadocodigo = 1,
+                                Fechasolicitud = DateTime.Now,
+                                Fechavencimiento = DateTime.Now.AddMinutes(20),
+                                Estado = true,
+                                Crea = 1,
+                                Fechacrea = DateTime.Now,
+                                Modifica = null,
+                                Fechamodifica = null
+                            };
+                            //Insertar Registro en Usuario
+                            _context.Solicitudcambio.Add(solicitudcambio);
+                            await _context.SaveChangesAsync();
+                                
+                            baseResponse.success = true;
+                            baseResponse.code = "00000";
+                            baseResponse.mensaje = "Metodo UpdateUsuario";
+
+                            //var message = new Message(new string[] { baseResponse.result.Correo, "luigui.olaya@gmail.com" }, "Código de Recuperación de Clave", "El código generado es: " + sCodigo + " y vence en 20 min.", null);
+                            //_emailSender.SendEmailAsync(message);
+
+                        }
+                        catch (Exception ex)
+                        {
+                            //transaction.Rollback();
+                            baseResponse.result.Idusuario = 0;
+                            baseResponse.mensaje = "No se pudo actualizar el Usuario. " + ex.Message;
+                            baseResponse.success = false;
+                            baseResponse.code = "-1";
+                            baseResponse.mensaje = "Metodo UpudateUsuario Error";
+                            throw;
+                        }
+
+                        baseResponse.success = true;
+                        baseResponse.code = "0000";
+                        baseResponse.mensaje = "Metodo EnviarCodigoRecuperación";
+
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        baseResponse.success = false;
+                        baseResponse.code = "-1";
+                        baseResponse.mensaje = "Error al Guardar Solicitud Cambio:" + ex.Message;
+                    }
+                }
+                else
+                {
+                    baseResponse.success = false;
+                    baseResponse.code = "-1";
+                    baseResponse.mensaje = "El correo no existe";
+                }
+            }
+            catch (Exception ex)
+            {
+                baseResponse.success = false;
+                baseResponse.code = "-1";
+                baseResponse.mensaje = "Error al Cargar Usuario por Email:" + ex.Message;
+            }
+            return Ok(baseResponse);
+        }
+
+        private string CrearPassword(int longitud)
+        {
+            string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < longitud--)
+            {
+                res.Append(caracteres[rnd.Next(caracteres.Length)]);
+            }
+            return res.ToString();
         }
 
     }

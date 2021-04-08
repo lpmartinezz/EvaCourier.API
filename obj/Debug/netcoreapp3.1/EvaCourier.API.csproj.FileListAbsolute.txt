@@ -182,7 +182,6 @@ C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaC
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.AssemblyInfoInputs.cache
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.AssemblyInfo.cs
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.csproj.CoreCompileInputs.cache
-C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\appsettings.json
@@ -342,3 +341,13 @@ C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaC
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.dll
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.pdb
 C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.genruntimeconfig.cache
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\EvaCourier.EmailService.dll
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\bin\Debug\netcoreapp3.1\EvaCourier.EmailService.pdb
+C:\Users\ADM\source\repos\EvaCourier\EvaCourier.API\obj\Debug\netcoreapp3.1\EvaCourier.API.MvcApplicationPartsAssemblyInfo.cs

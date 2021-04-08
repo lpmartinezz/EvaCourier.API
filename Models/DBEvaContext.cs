@@ -2,6 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
 namespace EvaCourier.API.Models
 {
     public partial class DBEvaContext : DbContext
@@ -18,6 +22,7 @@ namespace EvaCourier.API.Models
         public virtual DbSet<Opcion> Opcion { get; set; }
         public virtual DbSet<Perfil> Perfil { get; set; }
         public virtual DbSet<Perfilopcion> Perfilopcion { get; set; }
+        public virtual DbSet<Solicitudcambio> Solicitudcambio { get; set; }
         public virtual DbSet<Ubigeo> Ubigeo { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
@@ -135,6 +140,54 @@ namespace EvaCourier.API.Models
                     .HasConstraintName("FK_PERFILOPCION_PERFIL");
             });
 
+            modelBuilder.Entity<Solicitudcambio>(entity =>
+            {
+                entity.HasKey(e => e.Idsolicitudcambio)
+                    .HasName("XPKSOLICITUDCAMBIO");
+
+                entity.ToTable("SOLICITUDCAMBIO");
+
+                entity.Property(e => e.Idsolicitudcambio).HasColumnName("IDSOLICITUDCAMBIO");
+
+                entity.Property(e => e.Codigogenerado)
+                    .IsRequired()
+                    .HasColumnName("CODIGOGENERADO")
+                    .HasMaxLength(6)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Correo)
+                    .IsRequired()
+                    .HasColumnName("CORREO")
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Crea).HasColumnName("CREA");
+
+                entity.Property(e => e.Estado).HasColumnName("ESTADO");
+
+                entity.Property(e => e.Estadocodigo)
+                    .HasColumnName("ESTADOCODIGO")
+                    .HasComment("1=SOLICITADO / 2=ATENDIDO / 3=VENCIO SOLICITUD");
+
+                entity.Property(e => e.Fechacrea)
+                    .HasColumnName("FECHACREA")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Fechamodifica)
+                    .HasColumnName("FECHAMODIFICA")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Fechasolicitud)
+                    .HasColumnName("FECHASOLICITUD")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Fechavencimiento)
+                    .HasColumnName("FECHAVENCIMIENTO")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Modifica).HasColumnName("MODIFICA");
+            });
+
             modelBuilder.Entity<Ubigeo>(entity =>
             {
                 entity.HasKey(e => e.Idubigeo)
@@ -145,6 +198,7 @@ namespace EvaCourier.API.Models
                 entity.Property(e => e.Idubigeo).HasColumnName("IDUBIGEO");
 
                 entity.Property(e => e.Codigoubigeo)
+                    .IsRequired()
                     .HasColumnName("CODIGOUBIGEO")
                     .HasMaxLength(10)
                     .IsUnicode(false);
@@ -214,13 +268,11 @@ namespace EvaCourier.API.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Correo)
-                    .IsRequired()
                     .HasColumnName("CORREO")
                     .HasMaxLength(150)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Correo2)
-                    .IsRequired()
                     .HasColumnName("CORREO2")
                     .HasMaxLength(150)
                     .IsUnicode(false);

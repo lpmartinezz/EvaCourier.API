@@ -119,7 +119,7 @@ namespace EvaCourier.API.Controllers
                     baseResponse.result.Estado = perfil.Estado;
                     baseResponse.result.Crea = perfil.Crea;
                     baseResponse.result.Fechacrea = perfil.Fechacrea;
-                    baseResponse.result.opcions = (IEnumerable<ResultOpcion>)OpcionsByPerfilId(perfil.Idperfil);
+                    //baseResponse.result.opcions = (IEnumerable<ResultOpcion>)OpcionsByPerfilId(perfil.Idperfil);
 
                     baseResponse.success = true;
                     baseResponse.code = "0000";

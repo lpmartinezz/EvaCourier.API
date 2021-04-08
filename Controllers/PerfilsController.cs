@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace EvaCourier.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PerfilsController : ControllerBase
@@ -211,7 +211,7 @@ namespace EvaCourier.API.Controllers
             {
                 Perfil perfilinsert = new Perfil
                 {
-                    Idperfil = request.Idperfil,
+                    //Idperfil = request.Idperfil,
                     Nombreperfil = request.Nombreperfil,
                     Estado = request.Estado,
                     Crea = request.Crea,
